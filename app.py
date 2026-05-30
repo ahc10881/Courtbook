@@ -97,7 +97,7 @@ def initdb():
 
         admin_user = User(
             username='admin',
-            password=generate_password_hash('admin123'),
+            password=generate_password_hash('admin12345'),
             role='admin'
         )
 
