@@ -1,0 +1,161 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="card">
+
+    <div class="card-header">
+
+        <div class="d-flex justify-content-between">
+
+            <h4>All Cases</h4>
+
+            <form method="GET">
+
+                <div class="input-group">
+
+                    <input type="date"
+                           name="date"
+                           class="form-control"
+                           value="{{ selected_date if selected_date else '' }}">
+
+                    <button class="btn btn-primary">
+                        Filter
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <div class="card-body">
+
+        <div class="table-responsive">
+
+    <table class="table table-bordered table-striped">
+
+        <thead>
+
+            <tr>
+
+                <th>Date</th>
+
+                <th>Court</th>
+
+                <th>Serial</th>
+
+                <th>Case</th>
+	<th>Connected Matters</th>
+                <th>Record</th>
+	 
+	<th>Actions</th>
+	<th>Remarks</th>
+	<th>Edit/ Delete</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            {% for case in cases %}
+
+            <tr>
+
+                <td>{{ case.listing_date }}</td>
+
+                <td>{{ case.court_no }}</td>
+
+                <td>{{ case.serial_no }}</td>
+
+                <td>{{ case.case_no }}</td>
+
+               <td style="white-space: pre-line;">
+                    {{ case.connected_cases }}
+                </td>
+ <td>{{ case.record_type }}</td>
+
+                
+
+<td>
+
+    <form method="GET"
+      action="/update-status/{{ case.id }}/">
+      
+    <input type="hidden"
+           name="date"
+           value="{{ selected_date }}">
+
+        <select name="status"
+                class="form-select form-select-sm"
+                onchange="this.form.submit()">
+
+            <option value="PO"
+            {% if case.status == 'PO' %}
+            selected
+            {% endif %}
+            >
+            PO
+            </option>
+
+            <option value="BC"
+            {% if case.status == 'BC' %}
+            selected
+            {% endif %}
+            >
+            BC
+            </option>
+
+            <option value="JR"
+            {% if case.status == 'JR' %}
+            selected
+            {% endif %}
+            >
+            JR
+            </option>
+
+        </select>
+
+    </form>
+
+</td>
+
+<td>
+                    {{ case.remarks }}
+                </td>
+
+<td>
+
+    <a href="/edit-case/{{ case.id }}"
+       class="btn btn-primary btn-sm">
+       Edit
+    </a>
+
+    <a href="/delete-case/{{ case.id }}"
+       class="btn btn-dark btn-sm"
+       onclick="return confirm('Delete this case?')">
+       Delete
+    </a>
+
+</td>
+
+                
+
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
+
+    </div>
+
+</div>
+
+{% endblock %}

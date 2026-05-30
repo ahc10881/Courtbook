@@ -1,0 +1,209 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="card">
+
+    <div class="card-header">
+        Add New Case
+    </div>
+
+    <div class="card-body">
+
+        <form method="POST">
+
+            <div class="row">
+
+                <div class="col-md-4 mb-3">
+
+                    <label class="form-label">
+                        Listing Date
+                    </label>
+
+                    <input type="date"
+                           name="listing_date"
+                           class="form-control"
+                           value="{{ case.listing_date if case else '' }}">
+
+                </div>
+
+                <div class="col-md-4 mb-3">
+
+                    <label class="form-label">
+                        Court Number
+                    </label>
+
+                    <input type="text"
+                           name="court_no"
+                           class="form-control"
+                           placeholder="Court No."
+                           value="{{ case.court_no if case else '' }}">
+
+                </div>
+
+                <div class="col-md-4 mb-3">
+
+                    <label class="form-label">
+                        Serial Number
+                    </label>
+
+                    <input type="text"
+                           name="serial_no"
+                           class="form-control"
+                           placeholder="Serial No."
+                           value="{{ case.serial_no if case else '' }}">
+
+                </div>
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="form-label">
+                        Bench
+                    </label>
+
+                    <input type="text"
+                           name="bench"
+                           class="form-control"
+                           placeholder="Bench Name"
+                           value="{{ case.bench if case else '' }}">
+
+                </div>
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="form-label">
+                        Case Number
+                    </label>
+
+                    <input type="text"
+                           name="case_no"
+                           class="form-control"
+                           placeholder="CRLA/545/2010"
+                           value="{{ case.case_no if case else '' }}">
+
+                </div>
+
+                <div class="col-md-12 mb-3">
+
+                    <label class="form-label">
+                        Connected Cases
+                    </label>
+
+                    <textarea name="connected_cases"
+                              class="form-control"
+                              rows="4"
+                              placeholder="WITH CRLA/277/2010">{{ case.connected_cases if case else '' }}</textarea>
+
+                </div>
+
+                <div class="col-md-4 mb-3">
+
+                    <label class="form-label">
+                        Record Type
+                    </label>
+
+                    <select name="record_type"
+                            class="form-select">
+
+                        <option value="PB+R"
+                        {% if case and case.record_type == 'PB+R' %}
+                        selected
+                        {% endif %}
+                        >
+                        PB+R
+                        </option>
+
+                        <option value="TCR"
+                        {% if case and case.record_type == 'TCR' %}
+                        selected
+                        {% endif %}
+                        >
+                        TCR
+                        </option>
+
+                        <option value="Only HC Files"
+                        {% if case and case.record_type == 'Only HC Files' %}
+                        selected
+                        {% endif %}
+                        >
+                        Only HC Files
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="col-md-4 mb-3">
+
+                    <label class="form-label">
+                        Status
+                    </label>
+
+                    <select name="status"
+                            class="form-select">
+
+                        <option value="PO"
+                        {% if case and case.status == 'PO' %}
+                        selected
+                        {% endif %}
+                        >
+                        PO
+                        </option>
+
+                        <option value="BC"
+                        {% if case and case.status == 'BC' %}
+                        selected
+                        {% endif %}
+                        >
+                        BC
+                        </option>
+
+                        <option value="JR"
+                        {% if case and case.status == 'JR' %}
+                        selected
+                        {% endif %}
+                        >
+                        JR
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="col-md-4 mb-3">
+
+                    <label class="form-label">
+                        Remarks
+                    </label>
+
+                    <input type="text"
+                           name="remarks"
+                           class="form-control"
+                           placeholder="Remarks"
+                           value="{{ case.remarks if case else '' }}">
+
+                </div>
+
+            </div>
+
+            <button type="submit"
+                    class="btn btn-primary">
+
+                Save Case
+
+            </button>
+
+            <a href="/"
+               class="btn btn-secondary">
+
+               Back
+
+            </a>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

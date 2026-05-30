@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h3 class="mb-4">Pending BC Cases</h3>
+
+<div class="table-responsive">
+<table class="table table-bordered table-striped">
+
+<tr>
+    <th>Court</th>
+    <th>Case</th>
+    <th>Bench</th>
+    <th>Date</th>
+    <th>Action</th>
+</tr>
+
+{% for case in cases %}
+<tr>
+    <td>{{ case.court_no }}</td>
+    <td>{{ case.case_no }}</td>
+    <td>{{ case.bench }}</td>
+    <td>{{ case.listing_date }}</td>
+
+    <td>
+        <a href="/mark-received/{{ case.id }}" class="btn btn-success btn-sm">
+        Mark Received
+        </a>
+    </td>
+</tr>
+{% endfor %}
+
+</table>
+</div>
+
+{% endblock %}

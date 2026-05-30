@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="row mb-4">
+
+    <div class="col-md-6 mb-3">
+
+        <a href="/pending-bc"
+           style="text-decoration:none;">
+
+            <div class="card text-white bg-warning shadow">
+
+                <div class="card-body text-center">
+
+                    <h5>Pending BC</h5>
+
+                    <h2>{{ pending_bc }}</h2>
+
+                </div>
+
+            </div>
+
+        </a>
+
+    </div>
+
+    <div class="col-md-6 mb-3">
+
+        <a href="/jr-cases"
+           style="text-decoration:none;">
+
+            <div class="card text-white bg-danger shadow">
+
+                <div class="card-body text-center">
+
+                    <h5>Judgment Reserved Cases</h5>
+
+                    <h2>{{ jr_cases }}</h2>
+
+                </div>
+
+            </div>
+
+        </a>
+
+    </div>
+
+</div>
+
+<div class="card shadow">
+
+    <div class="card-header">
+
+        <h4>
+
+            Latest Listed Cases Court-wise
+
+            {% if latest_date %}
+                ({{ latest_date }})
+            {% endif %}
+
+        </h4>
+
+    </div>
+
+    <div class="card-body">
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped">
+
+                <thead>
+
+                    <tr>
+
+                        <th>Court No.</th>
+
+                        <th>Total Cases Listed</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for court in latest_cases %}
+
+                    <tr>
+
+                        <td>{{ court[0] }}</td>
+
+                        <td>{{ court[1] }}</td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

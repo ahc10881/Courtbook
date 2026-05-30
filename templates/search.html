@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h3>Search Cases</h3>
+
+<form method="GET" class="mb-4">
+
+<div class="input-group">
+    <input type="text" name="query" class="form-control" placeholder="Enter Case Number">
+
+    <button class="btn btn-primary">Search</button>
+</div>
+
+</form>
+
+<div class="table-responsive">
+<table class="table table-bordered">
+
+<tr>
+    <th>Case</th>
+    <th>Court</th>
+    <th>Status</th>
+    <th>Record</th>
+</tr>
+
+{% for case in results %}
+<tr>
+    <td>{{ case.case_no }}</td>
+    <td>{{ case.court_no }}</td>
+    <td>{{ case.status }}</td>
+    <td>{{ case.record_type }}</td>
+</tr>
+{% endfor %}
+
+</table>
+</div>
+
+{% endblock %}
